@@ -1,23 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header className="flex flex-col items-center bg-mobile-bg shadow shadow-black bg-cover bg-no-repeat py-6 w-full  md:bg-desktop-bg">
+        <h1 className="text-white text-2xl font-semibold">
+          Ip Address Tracker
+        </h1>
+        <div className="relative my-6">
+          <input
+            type="text"
+            placeholder="Search for any Ip address or domain"
+            className="border rounded-xl md:w-96 w-full  px-4 py-2 outline-none"
+          />
+
+          <img
+            src="/images/icon-arrow.svg"
+            alt="arrow"
+            className="absolute top-0.5 -mt-0.5 bg-black px-4 py-3.5 rounded-e-lg  right-0"
+          />
+        </div>
       </header>
     </div>
   );
