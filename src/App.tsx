@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div>
-      <header className="flex flex-col items-center bg-mobile-bg shadow shadow-black bg-cover bg-no-repeat py-6 w-full  md:bg-desktop-bg">
+      <header className="flex flex-col items-center bg-mobile-bg shadow shadow-black bg-cover bg-no-repeat pt-6 pb-14 w-full  md:bg-desktop-bg">
         <h1 className="text-white text-2xl font-semibold">
           Ip Address Tracker
         </h1>

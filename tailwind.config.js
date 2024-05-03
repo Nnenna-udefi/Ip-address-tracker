@@ -7,6 +7,10 @@ module.exports = {
         "desktop-bg": "url('../public/images/pattern-bg-desktop.jpg')",
         "mobile-bg": "url('../public/images/pattern-bg-mobile.png')",
       },
+      colors: {
+        dark_grey: "hsl(0, 0%, 17%)",
+        light_grey: "hsl(0, 0%, 59%)",
+      },
     },
   },
   plugins: [],
