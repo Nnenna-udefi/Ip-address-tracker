@@ -70,33 +70,40 @@ export const MapResult = ({ locationData }: MapProps) => {
 
   return (
     <div className="relative">
+      {/* location result */}
       <div className="flex justify-center">
-        <div className="absolute font-semibold md:text-left text-center text-dark_grey -mt-10 z-10 bg-white p-4 text-2xl flex md:flex-row flex-col justify-between rounded-lg w-3/4">
-          <div>
-            <h3 className="uppercase text-light_grey text-xs py-2 font-semibold">
-              Ip Address
-            </h3>
-            <p>{locationData?.ip}</p>
+        {locationData ? (
+          <div className="absolute font-semibold md:text-left text-center text-dark_grey -mt-10 z-10 bg-white p-4 text-2xl flex md:flex-row flex-col justify-between rounded-lg w-3/4">
+            <div>
+              <h3 className="uppercase text-light_grey text-xs py-2 font-semibold">
+                Ip Address
+              </h3>
+              <p>{locationData?.ip}</p>
+            </div>
+            <div className="md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
+              <h3 className="uppercase font-semibold text-light_grey text-xs py-2">
+                Location
+              </h3>
+              <p>{`${locationData?.location.city}, ${locationData?.location.country} ${locationData?.as.asn}`}</p>
+            </div>
+            <div className="md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
+              <h3 className="uppercase font-semibold text-light_grey text-xs py-2">
+                Timezone
+              </h3>
+              <p>{locationData?.location.timezone}</p>
+            </div>
+            <div className="md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
+              <h3 className="uppercase font-semibold text-light_grey text-xs py-2">
+                Isp
+              </h3>
+              <p>{locationData?.isp}</p>
+            </div>
           </div>
-          <div className="md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
-            <h3 className="uppercase font-semibold text-light_grey text-xs py-2">
-              Location
-            </h3>
-            <p>{`${locationData?.location.city}, ${locationData?.location.country} ${locationData?.as.asn}`}</p>
+        ) : (
+          <div className="-mt-10 z-10 bg-white p-4 w-3/4 text-center rounded-lg absolute">
+            Loading...
           </div>
-          <div className="md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
-            <h3 className="uppercase font-semibold text-light_grey text-xs py-2">
-              Timezone
-            </h3>
-            <p>{locationData?.location.timezone}</p>
-          </div>
-          <div className="md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
-            <h3 className="uppercase font-semibold text-light_grey text-xs py-2">
-              Isp
-            </h3>
-            <p>{locationData?.isp}</p>
-          </div>
-        </div>
+        )}
       </div>
       <div id="mapId" className="h-96 ">
         {/* <MapContainer
