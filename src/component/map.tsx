@@ -40,31 +40,31 @@ export const MapResult = ({ locationData }: MapProps) => {
       <div className="flex justify-center">
         {locationData ? (
           <div
-            className="absolute font-semibold md:text-left text-center text-dark_grey -mt-14 bg-white p-4 text-2xl flex md:flex-row flex-col justify-between rounded-lg w-3/4"
+            className="absolute font-semibold md:text-left text-center text-dark_grey -mt-16 bg-white p-4 text-2xl flex md:flex-row flex-col rounded-lg w-3/4"
             style={{ zIndex: 999 }}
           >
-            <div>
-              <h3 className="uppercase text-light_grey text-xs py-2 font-semibold">
+            <div className="md:w-1/4 w-full">
+              <h2 className="uppercase tracking-widest text-light_grey text-xs py-2 font-semibold">
                 Ip Address
-              </h3>
+              </h2>
               <p>{locationData?.ip}</p>
             </div>
-            <div className="md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
-              <h3 className="uppercase font-semibold text-light_grey text-xs py-2">
+            <div className="md:w-1/4 w-full md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
+              <h2 className="uppercase tracking-widest font-semibold text-light_grey text-xs py-2">
                 Location
-              </h3>
+              </h2>
               <p>{`${locationData?.location.city}, ${locationData?.location.country} ${locationData?.as.asn}`}</p>
             </div>
-            <div className="md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
-              <h3 className="uppercase font-semibold text-light_grey text-xs py-2">
+            <div className="md:w-1/4 w-full md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
+              <h2 className="uppercase tracking-widest font-semibold text-light_grey text-xs py-2">
                 Timezone
-              </h3>
+              </h2>
               <p>{locationData?.location.timezone}</p>
             </div>
-            <div className="md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
-              <h3 className="uppercase font-semibold text-light_grey text-xs py-2">
+            <div className="md:w-1/4 w-full md:border-l-2 md:pl-3 pl-0 md:py-1 py-2 border-l-0">
+              <h2 className="uppercase tracking-widest font-semibold text-light_grey text-xs py-2">
                 Isp
-              </h3>
+              </h2>
               <p>{locationData?.isp}</p>
             </div>
           </div>
