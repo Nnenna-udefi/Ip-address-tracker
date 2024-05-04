@@ -1,7 +1,5 @@
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-
-import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
 
@@ -30,15 +28,6 @@ type MapProps = {
   } | null;
 };
 
-// const customIcon = L.icon({
-//   iconUrl: "/images/icon-location.svg",
-
-//   iconSize: [25, 41],
-//   shadowSize: [30, 65],
-//   iconAnchor: [12, 41],
-//   shadowAnchor: [7, 65],
-// });
-
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 
 (L.Icon.Default.prototype as any)._getIconUrl = function (
@@ -50,16 +39,14 @@ delete (L.Icon.Default.prototype as any)._getIconUrl;
 };
 
 let DefaultIcon = L.icon({
-  iconUrl: icon,
+  iconUrl: "images/icon-location.svg",
   shadowUrl: iconShadow,
+  iconSize: [31, 41],
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
 export const MapResult = ({ locationData }: MapProps) => {
-  console.log("location latitude", locationData?.location.lat);
-  console.log("location longitude", locationData?.location.lng);
-  console.log("locationData", locationData);
   return (
     <div className="relative">
       {/* location result */}
@@ -108,7 +95,7 @@ export const MapResult = ({ locationData }: MapProps) => {
           center={
             locationData
               ? [locationData.location.lat, locationData.location.lng]
-              : [-1.286389, 36.817223]
+              : [6.43333, 3.41667]
           }
           zoom={13}
           className="h-[80vh]"
