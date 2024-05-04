@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import L from "leaflet";
-// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 type MapProps = {
   locationData: {
@@ -37,36 +37,36 @@ const customIcon = L.icon({
 export const MapResult = ({ locationData }: MapProps) => {
   const mapAccessToken = process.env.REACT_APP_MAP_API_KEY;
 
-  useEffect(() => {
-    let map: L.Map;
-    if (locationData) {
-      try {
-        const latitude = locationData.location.lat;
-        const longitude = locationData.location.lng;
-        map = L.map("mapId").setView([latitude, longitude], 13);
-        L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-          maxZoom: 18,
-          attribution: "",
-        }).addTo(map);
+  // useEffect(() => {
+  //   let map: L.Map;
+  //   if (locationData) {
+  //     try {
+  //       const latitude = locationData.location.lat;
+  //       const longitude = locationData.location.lng;
+  //       map = L.map("mapId").setView([latitude, longitude], 13);
+  //       L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+  //         maxZoom: 18,
+  //         attribution: "",
+  //       }).addTo(map);
 
-        L.marker([longitude, latitude], { icon: customIcon })
-          .addTo(map)
-          .bindPopup(
-            `${locationData.location.country}, ${locationData.location.region}<br>
-            
-             ${locationData.ip}`
-          )
-          .openPopup();
-      } catch (error) {
-        console.error("Error displaying map", error);
-      }
-    }
-    return () => {
-      if (map) {
-        map.remove();
-      }
-    };
-  }, [locationData, mapAccessToken]);
+  //       L.marker([longitude, latitude], { icon: customIcon })
+  //         .addTo(map)
+  //         .bindPopup(
+  //           `${locationData.location.country}, ${locationData.location.region}<br>
+
+  //            ${locationData.ip}`
+  //         )
+  //         .openPopup();
+  //     } catch (error) {
+  //       console.error("Error displaying map", error);
+  //     }
+  //   }
+  //   return () => {
+  //     if (map) {
+  //       map.remove();
+  //     }
+  //   };
+  // }, [locationData, mapAccessToken]);
 
   return (
     <div className="relative">
@@ -106,34 +106,31 @@ export const MapResult = ({ locationData }: MapProps) => {
         )}
       </div>
       <div id="mapId" className="h-96 ">
-        {/* <MapContainer
-        center={
-          locationData
-            ? [locationData.location.lat, locationData.location.lng]
-            : [-1.286389, 36.817223]
-        }
-        zoom={13}
-        className="h-[100vh]"
-        scrollWheelZoom={false}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {locationData && (
-          <Marker
-            position={[
-              locationData.location.lat,
-              locationData.location.lng,
-            ]}
-            icon={customIcon}
-          >
-            <Popup>
-              {locationData.location.country}, {locationData.location.city}
-            </Popup>
-          </Marker>
-        )}
-      </MapContainer> */}
+        <MapContainer
+          center={
+            locationData
+              ? [locationData.location.lat, locationData.location.lng]
+              : [-1.286389, 36.817223]
+          }
+          zoom={13}
+          className="h-[100vh]"
+          scrollWheelZoom={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {locationData && (
+            <Marker
+              position={[locationData.location.lat, locationData.location.lng]}
+              icon={customIcon}
+            >
+              <Popup>
+                {locationData.location.country}, {locationData.location.city}
+              </Popup>
+            </Marker>
+          )}
+        </MapContainer>
       </div>
     </div>
   );
