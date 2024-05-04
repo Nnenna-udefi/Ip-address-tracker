@@ -1,5 +1,6 @@
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import LocationIcon from "../images/icon-location.svg";
 
 type MapProps = {
   locationData: {
@@ -27,7 +28,7 @@ type MapProps = {
 };
 
 const customIcon = L.icon({
-  iconUrl: "./images/icon-location.svg",
+  iconUrl: LocationIcon,
   iconSize: [30, 38],
   iconAnchor: [16, 32],
   popupAnchor: [0, -32],
@@ -84,7 +85,7 @@ export const MapResult = ({ locationData }: MapProps) => {
               : [-1.286389, 36.817223]
           }
           zoom={13}
-          className="h-[100vh]"
+          className="h-[80vh]"
           scrollWheelZoom={false}
         >
           <TileLayer
@@ -97,7 +98,8 @@ export const MapResult = ({ locationData }: MapProps) => {
               icon={customIcon}
             >
               <Popup>
-                {locationData.location.country}, {locationData.location.city}
+                {locationData.isp} <br />
+                {locationData.ip}
               </Popup>
             </Marker>
           )}
