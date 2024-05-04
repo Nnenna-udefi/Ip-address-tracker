@@ -1,5 +1,3 @@
-import React, { useEffect } from "react";
-
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
@@ -35,45 +33,15 @@ const customIcon = L.icon({
   popupAnchor: [0, -32],
 });
 export const MapResult = ({ locationData }: MapProps) => {
-  const mapAccessToken = process.env.REACT_APP_MAP_API_KEY;
-
-  // useEffect(() => {
-  //   let map: L.Map;
-  //   if (locationData) {
-  //     try {
-  //       const latitude = locationData.location.lat;
-  //       const longitude = locationData.location.lng;
-  //       map = L.map("mapId").setView([latitude, longitude], 13);
-  //       L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-  //         maxZoom: 18,
-  //         attribution: "",
-  //       }).addTo(map);
-
-  //       L.marker([longitude, latitude], { icon: customIcon })
-  //         .addTo(map)
-  //         .bindPopup(
-  //           `${locationData.location.country}, ${locationData.location.region}<br>
-
-  //            ${locationData.ip}`
-  //         )
-  //         .openPopup();
-  //     } catch (error) {
-  //       console.error("Error displaying map", error);
-  //     }
-  //   }
-  //   return () => {
-  //     if (map) {
-  //       map.remove();
-  //     }
-  //   };
-  // }, [locationData, mapAccessToken]);
-
   return (
     <div className="relative">
       {/* location result */}
       <div className="flex justify-center">
         {locationData ? (
-          <div className="absolute font-semibold md:text-left text-center text-dark_grey -mt-10 z-10 bg-white p-4 text-2xl flex md:flex-row flex-col justify-between rounded-lg w-3/4">
+          <div
+            className="absolute font-semibold md:text-left text-center text-dark_grey -mt-14 bg-white p-4 text-2xl flex md:flex-row flex-col justify-between rounded-lg w-3/4"
+            style={{ zIndex: 999 }}
+          >
             <div>
               <h3 className="uppercase text-light_grey text-xs py-2 font-semibold">
                 Ip Address
@@ -100,7 +68,10 @@ export const MapResult = ({ locationData }: MapProps) => {
             </div>
           </div>
         ) : (
-          <div className="-mt-10 z-10 bg-white p-4 w-3/4 text-center rounded-lg absolute">
+          <div
+            className="-mt-14 bg-white p-4 w-3/4 text-center rounded-lg absolute"
+            style={{ zIndex: 999 }}
+          >
             Loading...
           </div>
         )}

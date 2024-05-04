@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div>
-      <header className="flex flex-col items-center bg-mobile-bg shadow shadow-black bg-cover bg-no-repeat pt-10 pb-24 w-full  md:bg-desktop-bg">
+      <header className="flex flex-col items-center bg-mobile-bg shadow shadow-black bg-cover bg-no-repeat pt-8 pb-24 w-full  md:bg-desktop-bg">
         <h1 className="text-white text-3xl font-semibold">
           Ip Address Tracker
         </h1>
@@ -48,7 +48,7 @@ function App() {
             <input
               type="text"
               placeholder="Search for any IP address or domain"
-              className="border text-xl rounded-xl md:w-[30rem] w-full text-dark_grey px-4 py-4 outline-none"
+              className="border md:text-xl text-sm rounded-xl md:w-[30rem] w-96 text-dark_grey px-4 md:py-4 py-2.5 outline-none"
               value={inputValue}
               onChange={handleInputChange}
             />
@@ -57,7 +57,7 @@ function App() {
               <img
                 src="/images/icon-arrow.svg"
                 alt="arrow"
-                className="absolute top-0.5 -mt-0.5 bg-dark_grey px-4 py-6 rounded-e-lg  right-0"
+                className="absolute top-0.5 -mt-0.5 bg-black md:p-6 p-3.5 rounded-e-lg  right-0"
               />
             </button>
           </div>
