@@ -18,6 +18,7 @@ function App() {
         setLocationData(data);
       } catch (error) {
         console.error("Error fetching data", error);
+        <div>An error occured, reload the page and try again.</div>;
       }
     },
     [apiKey]

@@ -1,6 +1,9 @@
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import LocationIcon from "../images/icon-location.svg";
+
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/leaflet.css";
 
 type MapProps = {
   locationData: {
@@ -27,13 +30,36 @@ type MapProps = {
   } | null;
 };
 
-const customIcon = L.icon({
-  iconUrl: LocationIcon,
-  iconSize: [30, 38],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32],
+// const customIcon = L.icon({
+//   iconUrl: "/images/icon-location.svg",
+
+//   iconSize: [25, 41],
+//   shadowSize: [30, 65],
+//   iconAnchor: [12, 41],
+//   shadowAnchor: [7, 65],
+// });
+
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+(L.Icon.Default.prototype as any)._getIconUrl = function (
+  name: string
+): string {
+  return require("leaflet/dist/images/" +
+    (name === "icon" ? "marker-icon" : "marker-shadow") +
+    ".png");
+};
+
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
 });
+
+L.Marker.prototype.options.icon = DefaultIcon;
+
 export const MapResult = ({ locationData }: MapProps) => {
+  console.log("location latitude", locationData?.location.lat);
+  console.log("location longitude", locationData?.location.lng);
+  console.log("locationData", locationData);
   return (
     <div className="relative">
       {/* location result */}
@@ -90,12 +116,13 @@ export const MapResult = ({ locationData }: MapProps) => {
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
           />
+
           {locationData && (
             <Marker
               position={[locationData.location.lat, locationData.location.lng]}
-              icon={customIcon}
+              icon={DefaultIcon}
             >
               <Popup className="font-semibold">
                 The location is here: <br />
