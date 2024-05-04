@@ -33,8 +33,16 @@ function App() {
   };
 
   useEffect(() => {
-    const defaultIPAddress = "8.8.8.8";
-    fetchData(defaultIPAddress);
+    const getUserIpAddress = async () => {
+      try {
+        const res = await fetch("https://api.ipify.org?format=json");
+        const data = await res.json();
+        fetchData(data.ip);
+      } catch (error) {
+        console.error("Error fetching user Ip Address", error);
+      }
+    };
+    getUserIpAddress();
   }, [fetchData]);
 
   return (
