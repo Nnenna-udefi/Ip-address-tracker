@@ -97,9 +97,9 @@ export const MapResult = ({ locationData }: MapProps) => {
               position={[locationData.location.lat, locationData.location.lng]}
               icon={customIcon}
             >
-              <Popup>
-                {locationData.isp} <br />
-                {locationData.ip}
+              <Popup className="font-semibold">
+                The location is here: <br />
+                {locationData.isp}
               </Popup>
             </Marker>
           )}
